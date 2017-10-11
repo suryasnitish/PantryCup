@@ -12,7 +12,7 @@ import com.pantrycup.dataproviders.ClassToFetchServiceProvidersFromDB;
 
 public class LoginServlet extends HttpServlet
 {
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		ClassToFetchServiceProvidersFromDB provider=new ClassToFetchServiceProvidersFromDB();
 		

@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import com.pantrycup.entities.ServiceProvider;
+import com.pantrycup.entities.ServiceProviderUser;
 
 public class ClassToFetchServiceProvidersFromDB
 {
@@ -20,12 +20,12 @@ public class ClassToFetchServiceProvidersFromDB
 		sessionFactory=configuration.buildSessionFactory();
 	}
 	
-	public List<ServiceProvider> fetchAllServiceProviders()
+	public List<ServiceProviderUser> fetchAllServiceProviders()
 	{
 		Session session=sessionFactory.openSession();
 		Transaction transaction=session.beginTransaction();
-		Query query=session.createQuery("from ServiceProvider");
-		List<ServiceProvider> serviceProviderList=query.list();
+		Query query=session.createQuery("from ServiceProviderUser");
+		List<ServiceProviderUser> serviceProviderList=query.list();
 		return serviceProviderList; 
 	}
 }

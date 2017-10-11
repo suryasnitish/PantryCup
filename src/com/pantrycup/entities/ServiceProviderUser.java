@@ -5,8 +5,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ServiceProvider")
-public class ServiceProvider  
+@Table(name="ServiceProviderUser")
+public class ServiceProviderUser  
 {
 	@Id
 	private long no;
