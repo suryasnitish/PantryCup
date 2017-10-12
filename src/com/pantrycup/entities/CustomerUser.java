@@ -12,6 +12,8 @@ public class CustomerUser
 	private long userNo;
 	private String username;
 	private String password; 
+	private String email;
+	private String contactNo;
 	private String fullname;
 	private String location;
 	public long getUserNo()
@@ -53,6 +55,18 @@ public class CustomerUser
 	public void setLocation(String location)
 	{
 		this.location = location;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getContactNo() {
+		return contactNo;
+	}
+	public void setContactNo(String contactNo) {
+		this.contactNo = contactNo;
 	}
 	
 	

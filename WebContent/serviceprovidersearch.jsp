@@ -15,7 +15,13 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css"
+	href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 </head>
+
+
+
 <body>
 	<div id="headersection" align="center">
 		<div class="col-lg-6">
@@ -30,7 +36,56 @@
 		</div>
 	</div>
 
-	<div id="mainbody"></div>
+	<div id="mainbody">
+
+		<table id="example" class="display" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Position</th>
+					<th>Office</th>
+					<th>Age</th>
+					<th>Start date</th>
+					<th>Salary</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<th>Name</th>
+					<th>Position</th>
+					<th>Office</th>
+					<th>Age</th>
+					<th>Start date</th>
+					<th>Salary</th>
+				</tr>
+			</tfoot>
+			<tbody>
+				<tr>
+					<td>Tiger Nixon</td>
+					<td>System Architect</td>
+					<td>Edinburgh</td>
+					<td>61</td>
+					<td>2011/04/25</td>
+					<td>$320,800</td>
+				</tr>
+				<tr>
+					<td>Garrett Winters</td>
+					<td>Accountant</td>
+					<td>Tokyo</td>
+					<td>63</td>
+					<td>2011/07/25</td>
+					<td>$170,750</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+
+
+
+
+
 
 	<div id="footer">
 		<nav aria-label="Page navigation example">
@@ -66,5 +121,15 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
 		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
 		crossorigin="anonymous"></script>
+
+	<script src="/js/jquery/jquery-3.2.1.js"></script>
+
+	<script type="text/javascript" charset="utf8"
+		src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {			
+			$('#example').DataTable();
+		});
+	</script>
 </body>
 </html>

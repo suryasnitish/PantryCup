@@ -14,9 +14,11 @@ public class ServiceProviderUser
 	private String password; 
 	private String fullname;
 	private String specialization;
-    private String schedule;
     private double cost;
     private String costBasis;
+    private String contactNo;
+    private String location;
+    private String email;
 	public long getNo()
 	{
 		return no;
@@ -57,14 +59,6 @@ public class ServiceProviderUser
 	{
 		this.specialization = specialization;
 	}
-	public String getSchedule()
-	{
-		return schedule;
-	}
-	public void setSchedule(String schedule)
-	{
-		this.schedule = schedule;
-	}
 	public double getCost()
 	{
 		return cost;
@@ -80,6 +74,24 @@ public class ServiceProviderUser
 	public void setCostBasis(String costBasis)
 	{
 		this.costBasis = costBasis;
+	}
+	public String getContactNo() {
+		return contactNo;
+	}
+	public void setContactNo(String contactNo) {
+		this.contactNo = contactNo;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
     
     
