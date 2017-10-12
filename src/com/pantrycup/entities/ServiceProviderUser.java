@@ -1,6 +1,7 @@
 package com.pantrycup.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -9,6 +10,7 @@ import javax.persistence.Table;
 public class ServiceProviderUser  
 {
 	@Id
+	@GeneratedValue
 	private long no;
 	private String username;
 	private String password; 

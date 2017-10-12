@@ -39,7 +39,7 @@
 			</tr>
 			<tr>
 				<td><label for="fullnametext">Name</label></td>
-				<td><input type="text" name="username" class="form-control"
+				<td><input type="text" name="fullname" class="form-control"
 					id="fullnametext" placeholder="Enter fullname" /></td>
 			</tr>
 			<tr>

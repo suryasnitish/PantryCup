@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pantrycup.dataproviders.ClassToFetchServiceProvidersFromDB;
+import com.pantrycup.dataproviders.ServiceProviderDBTable;
 
 public class LoginServlet extends HttpServlet
 {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		ClassToFetchServiceProvidersFromDB provider=new ClassToFetchServiceProvidersFromDB();
+		ServiceProviderDBTable provider=new ServiceProviderDBTable();
 		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
