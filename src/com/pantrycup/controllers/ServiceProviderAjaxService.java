@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
 import com.pantrycup.dataproviders.ServiceProviderDBTable;
 import com.pantrycup.entities.ServiceProviderUser;
 
@@ -17,7 +18,8 @@ public class ServiceProviderAjaxService
 	{
 		ServiceProviderDBTable serviceProviderTable = new ServiceProviderDBTable();
 		List<ServiceProviderUser> serviceProviderList = serviceProviderTable.fetchAllServiceProviders();
-		JSONObject serviceProviderJSON = new JSONObject(serviceProviderList);
-		return serviceProviderJSON.toString();
+		//JSONObject serviceProviderJSON = new JSONObject(serviceProviderList);
+		String serviceProviderGSON = new Gson().toJson(serviceProviderList);
+		return serviceProviderGSON;
 	}
 }
