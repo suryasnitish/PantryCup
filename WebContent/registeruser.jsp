@@ -31,7 +31,7 @@
 				<td>
 					<div class="form-check">
 						<label class="form-check-label"> <input name="isserviceprovidercheckbox"
-							class="form-check-input" type="checkbox" value=""> I am a
+							class="form-check-input" type="checkbox" value="checked"> I am a
 							Service Provider
 						</label>
 					</div>

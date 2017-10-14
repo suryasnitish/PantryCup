@@ -28,4 +28,14 @@ public class ServiceProviderDBTable
 		List<ServiceProviderUser> serviceProviderList=query.list();
 		return serviceProviderList; 
 	}
+	public void saveServiceProvider(ServiceProviderUser serviceProviderUser)
+	{
+		Session session=sessionFactory.openSession();
+		Transaction transaction=session.beginTransaction();
+		session.save(serviceProviderUser);
+		transaction.commit();
+	}
+	
 }
+
+

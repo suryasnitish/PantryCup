@@ -82,11 +82,6 @@
 	</div>
 
 
-
-
-
-
-
 	<div id="footer">
 		<nav aria-label="Page navigation example">
 		<ul class="pagination" align="center">
@@ -129,6 +124,21 @@
 	<script type="text/javascript">
 		$(document).ready(function() {			
 			$('#example').DataTable();
+			$.ajax({
+				type : "GET",
+				contentType : "application/json",
+				url : "/search/allprovider",
+				success : function(data) {
+				alert("success");
+				},
+				error : function(e) {
+				alert("fail");
+				},
+				done : function(e) {
+				alert("done");				}
+			});	
+			
+			
 		});
 	</script>
 </body>
