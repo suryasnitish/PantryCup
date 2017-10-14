@@ -32,4 +32,21 @@
 		<servlet-name>RegisterServlet</servlet-name>
 		<url-pattern>/doSignup</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>
+        org.springframework.web.servlet.DispatcherServlet
+    </servlet-class>
+    <init-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/spring-servlet.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+ </servlet>
+ 
+ 	<servlet-mapping>
+   	 <servlet-name>dispatcher</servlet-name>
+   	 <url-pattern>/spring/*</url-pattern>
+	 </servlet-mapping>
 </web-app>
