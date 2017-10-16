@@ -76,7 +76,7 @@
 			</tr>
 			<tr>
 				<td><label name="costbasislabel" for="costbasisselect">Charge Basis</label></td>
-				<td><select class="form-control" id="costbasisselect">
+				<td><select class="form-control" name="costbasisselect" id="costbasisselect">
 						<option>Per Day basis</option>
 						<option>Per Hour basis</option>
 						<option>Half day basis</option>

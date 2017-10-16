@@ -23,6 +23,11 @@
 
 
 <body>
+<br/>
+<br/>
+<br/>
+<br/>
+
 	<div id="headersection" align="center">
 		<div class="col-lg-6">
 			<div class="input-group">
@@ -36,8 +41,8 @@
 		</div>
 	</div>
 
-	<div id="mainbody">
-		<table id="example" class="table" cellspacing="0" width="100%">
+	<div id="mainbody" style='width:1500px; position:absolute; top:200px; bottom:0; left:0; right:0; margin:auto;'>
+		<table id="example" class="table" cellspacing="0">
 			<thead>
 				<tr>
 					<th>Name</th>
@@ -56,45 +61,10 @@
 			</tfoot>
 		</table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	</div>
 
 
-	<div id="footer">
-		<nav aria-label="Page navigation example">
-		<ul class="pagination" align="center">
-			<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#">Next</a></li>
-		</ul>
-		</nav>
-
-
-	</div>
-
-
-
-
-
+	
 
 
 
@@ -121,7 +91,13 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#example').DataTable({
-				"ajax" : 'spring/search/serviceprovider'
+				"ajax" : 'spring/search/serviceprovider',
+				"columns": [
+				            { "data": "fullname" },
+				            { "data": "specialization" },
+				            { "data": "cost" },
+				            { "data": "costBasis" }
+				        ]
 			});
 			/* $.ajax({
 				type : "GET",
