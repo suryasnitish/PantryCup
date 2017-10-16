@@ -37,47 +37,42 @@
 	</div>
 
 	<div id="mainbody">
-
-		<table id="example" class="display" cellspacing="0" width="100%">
+		<table id="example" class="table" cellspacing="0" width="100%">
 			<thead>
 				<tr>
 					<th>Name</th>
-					<th>Position</th>
-					<th>Office</th>
-					<th>Age</th>
-					<th>Start date</th>
-					<th>Salary</th>
+					<th>Service</th>
+					<th>Cost</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tfoot>
 				<tr>
 					<th>Name</th>
-					<th>Position</th>
-					<th>Office</th>
-					<th>Age</th>
-					<th>Start date</th>
-					<th>Salary</th>
+					<th>Service</th>
+					<th>Cost</th>
+					<th>Actions</th>
 				</tr>
 			</tfoot>
-			<tbody>
-				<tr>
-					<td>Tiger Nixon</td>
-					<td>System Architect</td>
-					<td>Edinburgh</td>
-					<td>61</td>
-					<td>2011/04/25</td>
-					<td>$320,800</td>
-				</tr>
-				<tr>
-					<td>Garrett Winters</td>
-					<td>Accountant</td>
-					<td>Tokyo</td>
-					<td>63</td>
-					<td>2011/07/25</td>
-					<td>$170,750</td>
-				</tr>
-			</tbody>
 		</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	</div>
 
@@ -117,28 +112,32 @@
 		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
 		crossorigin="anonymous"></script>
 
-	<script src="/js/jquery/jquery-3.2.1.js"></script>
+	<script src="js/jquery/jquery-3.2.1.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
 	<script type="text/javascript" charset="utf8"
 		src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {			
-			$('#example').DataTable();
-			$.ajax({
+		$(document).ready(function() {
+			$('#example').DataTable({
+				"ajax" : 'spring/search/serviceprovider'
+			});
+			/* $.ajax({
 				type : "GET",
 				contentType : "application/json",
-				url : "/search/allprovider",
+				url : "spring/search/serviceprovider",
 				success : function(data) {
-				alert("success");
+					alert("success");
 				},
 				error : function(e) {
-				alert("fail");
+					alert("fail");
 				},
 				done : function(e) {
-				alert("done");				}
-			});	
-			
-			
+					alert("done");
+				}
+			}); */
+
 		});
 	</script>
 </body>
