@@ -34,6 +34,16 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>BookingServlet</servlet-name>
+		<servlet-class>com.pantrycup.servlet.BookingServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>BookingServlet</servlet-name>
+		<url-pattern>/doBook</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
     <servlet-name>dispatcher</servlet-name>
     <servlet-class>
         org.springframework.web.servlet.DispatcherServlet

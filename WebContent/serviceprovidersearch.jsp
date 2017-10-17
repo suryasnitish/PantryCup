@@ -5,28 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<!-- Required meta tags -->
+
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-	crossorigin="anonymous">
-
-<link rel="stylesheet" type="text/css"
-	href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+<link rel="stylesheet" type="text/css"href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css"/>
+<link rel="stylesheet" type="text/css"href="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"/>
 </head>
 
-
-
 <body>
-<br/>
-<br/>
-<br/>
-<br/>
+	<br />
+	<br />
+	<br />
+	<br />
 
 	<div id="headersection" align="center">
 		<div class="col-lg-6">
@@ -41,32 +33,33 @@
 		</div>
 	</div>
 
-	<div id="mainbody" style='width:1500px; position:absolute; top:200px; bottom:0; left:0; right:0; margin:auto;'>
-		<table id="example" class="table" cellspacing="0">
+	<div id="mainbody"
+		style='width: 1500px; position: absolute; top: 200px; bottom: 0; left: 0; right: 0; margin: auto;'>
+		<table id="example" class="table table-striped table-bordered"
+			cellspacing="0">
 			<thead>
 				<tr>
+					<th>#</th>
 					<th>Name</th>
 					<th>Service</th>
 					<th>Cost</th>
+					<th>Cost Basis</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
 			<tfoot>
 				<tr>
+					<th>#</th>
 					<th>Name</th>
 					<th>Service</th>
 					<th>Cost</th>
+					<th>Cost Basis</th>
 					<th>Actions</th>
 				</tr>
 			</tfoot>
 		</table>
 
 	</div>
-
-
-	
-
-
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -85,34 +78,42 @@
 	<script src="js/jquery/jquery-3.2.1.js"></script>
 	<script
 		src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-
+	<script
+		src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 	<script type="text/javascript" charset="utf8"
 		src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('#example').DataTable({
+			var table = $('#example').DataTable({
 				"ajax" : 'spring/search/serviceprovider',
-				"columns": [
-				            { "data": "fullname" },
-				            { "data": "specialization" },
-				            { "data": "cost" },
-				            { "data": "costBasis" }
-				        ]
+				"columns" : [ {
+					"data" : "no"
+				}, {
+					"data" : "fullname"
+				}, {
+					"data" : "specialization"
+				}, {
+					"data" : "cost"
+				}, {
+					"data" : "costBasis"
+				}, {
+					"data" : "action"
+				} ],
+				"columnDefs" : [ {
+					"targets" : -1,
+					"data" : null,
+					"defaultContent" : "<button>Book</button>"
+				}, {
+					"targets" : [ 0 ],
+					"visible" : false
+				} ]
 			});
-			/* $.ajax({
-				type : "GET",
-				contentType : "application/json",
-				url : "spring/search/serviceprovider",
-				success : function(data) {
-					alert("success");
-				},
-				error : function(e) {
-					alert("fail");
-				},
-				done : function(e) {
-					alert("done");
-				}
-			}); */
+			$('#example tbody').on('click', 'button', function() {
+				var data = table.row($(this).parents('tr')).data();
+				alert(data.fullname + "'s salary is: " + data[5]);
+				//redirectto("bookservice.jsp?providerNo=data.no");
+				window.location = "bookservice.jsp?providerNo=" + data.no;
+			});
 
 		});
 	</script>
