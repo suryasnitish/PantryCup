@@ -2,46 +2,43 @@ package com.pantrycup.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 @Entity
 @Table(name="CustomerUser")
 public class CustomerUser
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long userNo;
-	private String username;
-	private String password; 
+	@GeneratedValue(generator="gen")
+	@GenericGenerator(name="gen", strategy="foreign", parameters={@Parameter(name="property", value="userCredentials")})
+	private long no;
+	
+	@OneToOne(targetEntity=UserCredentials.class,mappedBy="customerUser")
+	@Cascade(value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private UserCredentials userCredentials;
+	
 	private String email;
+	
 	private String contactNo;
+	
 	private String fullname;
+	
 	private String location;
-	public long getUserNo()
+	
+
+	public long getNo()
 	{
-		return userNo;
+		return no;
 	}
-	public void setUserNo(long userNo)
+	public void setNo(long no)
 	{
-		this.userNo = userNo;
-	}
-	public String getUsername()
-	{
-		return username;
-	}
-	public void setUsername(String username)
-	{
-		this.username = username;
-	}
-	public String getPassword()
-	{
-		return password;
-	}
-	public void setPassword(String password)
-	{
-		this.password = password;
+		this.no = no;
 	}
 	public String getFullname()
 	{
@@ -70,6 +67,13 @@ public class CustomerUser
 	}
 	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
+	}
+
+	public UserCredentials getUserCredentials() {
+		return userCredentials;
+	}
+	public void setUserCredentials(UserCredentials userCredentials) {
+		this.userCredentials = userCredentials;
 	}
 	
 	

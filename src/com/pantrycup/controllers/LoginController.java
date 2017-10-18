@@ -26,7 +26,7 @@ public class LoginController
 				
 		CustomerUserDBTable customerUserTable=new CustomerUserDBTable();
 		CustomerUser customeruser = customerUserTable.findByUserName(username);
-		if(customeruser!= null && password.equals(customeruser.getPassword()))
+		if(customeruser!= null && password.equals(customeruser.getUserCredentials().getPassword()))
 		{
 			UserAuthenticator.addToAuthenticatedSession(request.getSession());
 			return "serviceprovidersearch";

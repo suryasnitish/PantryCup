@@ -26,6 +26,7 @@ public class ServiceProviderDBTable
 		Transaction transaction=session.beginTransaction();
 		Query query=session.createQuery("from ServiceProviderUser");
 		List<ServiceProviderUser> serviceProviderList=query.list();
+		session.close();
 		return serviceProviderList; 
 	}
 	public void saveServiceProvider(ServiceProviderUser serviceProviderUser)
@@ -34,6 +35,7 @@ public class ServiceProviderDBTable
 		Transaction transaction=session.beginTransaction();
 		session.save(serviceProviderUser);
 		transaction.commit();
+		session.close();
 	}
 	
 }

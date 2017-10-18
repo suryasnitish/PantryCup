@@ -11,24 +11,31 @@ import com.pantrycup.dataproviders.CustomerUserDBTable;
 import com.pantrycup.dataproviders.ServiceProviderDBTable;
 import com.pantrycup.entities.CustomerUser;
 import com.pantrycup.entities.ServiceProviderUser;
+import com.pantrycup.entities.UserCredentials;
 
 public class RegisterServlet extends HttpServlet
 {
+
+	private static final long serialVersionUID = 1L;
+
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		String isServiceProvider = request.getParameter("isserviceprovidercheckbox");
+		
+		UserCredentials userCredentials = new UserCredentials();
+		String username = request.getParameter("username");
+		userCredentials.setUsername(username);
+		String password = request.getParameter("password");
+		userCredentials.setPassword(password);
+		
 		if (isServiceProvider==null)
 		{
 			CustomerUser customerUser = new CustomerUser();
+			userCredentials.setCustomerUser(customerUser);
+			customerUser.setUserCredentials(userCredentials);
 			String fullname = request.getParameter("fullname");
 			customerUser.setFullname(fullname);
 			System.out.println(fullname);
-			String username = request.getParameter("username");
-			customerUser.setUsername(username);
-			System.out.println(username);
-			String password = request.getParameter("password");
-			customerUser.setPassword(password);
-			System.out.println(password);
 			String email = request.getParameter("email");
 			customerUser.setEmail(email);
 			System.out.println(email);
@@ -44,15 +51,10 @@ public class RegisterServlet extends HttpServlet
 		} else
 		{
 			ServiceProviderUser serviceProviderUser = new ServiceProviderUser();
+			serviceProviderUser.setUserCredentials(userCredentials);
 			String fullname = request.getParameter("fullname");
 			serviceProviderUser.setFullname(fullname);
 			System.out.println(fullname);
-			String username = request.getParameter("username");
-			serviceProviderUser.setUsername(username);
-			System.out.println(username);
-			String password = request.getParameter("password");
-			serviceProviderUser.setPassword(password);
-			System.out.println(password);
 			String email = request.getParameter("email");
 			serviceProviderUser.setEmail(email);
 			System.out.println(email);

@@ -2,26 +2,41 @@ package com.pantrycup.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 @Entity
 @Table(name="ServiceProviderUser")
 public class ServiceProviderUser  
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(generator="gen2")
+	@GenericGenerator(name="gen2", strategy="foreign", parameters={@Parameter(name="property", value="userCredentials")})
 	private long no;
-	private String username;
-	private String password; 
+	
+	@OneToOne(targetEntity=UserCredentials.class,mappedBy="serviceProviderUser")
+	@Cascade(value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private UserCredentials userCredentials;
+	
 	private String fullname;
+	
 	private String specialization;
+	
     private double cost;
+    
     private String costBasis;
+    
     private String contactNo;
+    
     private String location;
+    
     private String email;
+    
 	public long getNo()
 	{
 		return no;
@@ -30,22 +45,7 @@ public class ServiceProviderUser
 	{
 		this.no = no;
 	}
-	public String getUsername()
-	{
-		return username;
-	}
-	public void setUsername(String username)
-	{
-		this.username = username;
-	}
-	public String getPassword()
-	{
-		return password;
-	}
-	public void setPassword(String password)
-	{
-		this.password = password;
-	}
+
 	public String getFullname()
 	{
 		return fullname;
@@ -96,6 +96,13 @@ public class ServiceProviderUser
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public UserCredentials getUserCredentials() {
+		return userCredentials;
+	}
+	public void setUserCredentials(UserCredentials userCredentials) {
+		this.userCredentials = userCredentials;
+	}
+	
     
     
 }

@@ -26,23 +26,26 @@ private SessionFactory sessionFactory;
 		Session session=sessionFactory.openSession();
 		Transaction transaction=session.beginTransaction();
 		session.save(customeruser);
-		transaction.commit();
+		transaction.commit();		
+		session.close();
 	}
 
 	public CustomerUser findByUserName(String username)
 	{
 		Session session=sessionFactory.openSession();
 		Transaction transaction=session.beginTransaction();
-		String hql = "FROM CustomerUser WHERE username = '"+username+"'";
+		String hql = "from CustomerUser C INNER JOIN c.userCredentials u WHERE u.username = '"+username+"'";
 		System.out.println(hql);
-		Query query = session.createQuery(hql);
+		Query<CustomerUser> query = session.createQuery(hql);
 		List<CustomerUser> results = query.list();
 		if(results.size()==0)
 		{
+			session.close();
 			return null;
 		}
 		else
 		{
+			session.close();
 			return results.get(0);
 		}
 	}
