@@ -31,7 +31,14 @@ public class AuthenticationFilter implements Filter
 		HttpServletRequest httpRequest = (HttpServletRequest)request;
 		HttpServletResponse httpResponse = (HttpServletResponse)response;
 		String uri = httpRequest.getRequestURI();
-		if(uri.equals("/PantryCup/login.jsp")||uri.equals("/PantryCup/doLogin"))
+		if(uri.equals("/PantryCup/login.jsp"))
+		{
+			if(UserAuthenticator.isAuthenticated(httpRequest.getSession()))
+			{
+				httpResponse.sendRedirect("/PantryCup/serviceprovidersearch.jsp");
+			}
+		}
+		else if(uri.equals("/PantryCup/spring/doLogin"))
 		{
 			;
 		}

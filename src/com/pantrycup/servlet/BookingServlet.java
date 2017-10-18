@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.pantrycup.dataproviders.CustomerUserDBTable;
 import com.pantrycup.entities.CustomerUser;
 
-public class BookingServlet extends HttpServlet {
+public class BookingServlet extends HttpServlet 
+{
+
+	private static final long serialVersionUID = 1L;
+
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		String username = request.getParameter("username");

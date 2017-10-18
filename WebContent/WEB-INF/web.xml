@@ -14,16 +14,6 @@
 	</welcome-file-list>
 
 	<servlet>
-		<servlet-name>LoginServlet</servlet-name>
-		<servlet-class>com.pantrycup.servlet.LoginServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>LoginServlet</servlet-name>
-		<url-pattern>/doLogin</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
 		<servlet-name>RegisterServlet</servlet-name>
 		<servlet-class>com.pantrycup.servlet.RegisterServlet</servlet-class>
 	</servlet>

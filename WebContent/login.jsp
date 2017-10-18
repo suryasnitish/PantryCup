@@ -19,11 +19,12 @@
 
 <body>
 <div style="padding-top:50px">
-	<form action="doLogin" method="post">
+	<form action="/PantryCup/spring/doLogin" method="post">
 		<table align="center">
 			<tr align="center">
 				<td colspan="2">
 					<h1 style="color:blue; font-weight=bold">Login with your credentials</h1>
+					${errors}
 				</td>
 			</tr>
 			<tr>

@@ -75,7 +75,7 @@
 		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
 		crossorigin="anonymous"></script>
 
-	<script src="js/jquery/jquery-3.2.1.js"></script>
+	<script src="/PantryCup/js/jquery/jquery-3.2.1.js"></script>
 	<script
 		src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 	<script

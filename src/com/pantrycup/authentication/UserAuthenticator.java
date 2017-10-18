@@ -8,11 +8,25 @@ import javax.websocket.Session;
 
 public class UserAuthenticator
 {
-	static List<Session> authenticatedSessionsList = new ArrayList<Session>();
+	static List<HttpSession> authenticatedSessionsList = new ArrayList<HttpSession>();
 	
+	public static void addToAuthenticatedSession(HttpSession session) 
+	{
+		authenticatedSessionsList.add(session);
+	}
+	
+	/**
+	 * This method checks whether the parameter session is 
+	 * included in the list of logged-in sessions.
+	 * 
+	 * @param session
+	 * @return
+	 */
 	public static boolean isAuthenticated(HttpSession session)
 	{
 		return authenticatedSessionsList.contains(session);
 	}
+
+
 
 }
