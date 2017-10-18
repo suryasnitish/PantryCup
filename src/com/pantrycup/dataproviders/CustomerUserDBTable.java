@@ -34,13 +34,13 @@ private SessionFactory sessionFactory;
 	{
 		Session session=sessionFactory.openSession();
 		Transaction transaction=session.beginTransaction();
-		String hql = "from CustomerUser C INNER JOIN c.userCredentials u WHERE u.username = '"+username+"'";
+		String hql = "select c from CustomerUser c INNER JOIN c.userCredentials u WHERE u.no=c.no and u.username = '"+username+"'";
 		System.out.println(hql);
 		Query<CustomerUser> query = session.createQuery(hql);
 		List<CustomerUser> results = query.list();
 		if(results.size()==0)
 		{
-			session.close();
+			session.close();		
 			return null;
 		}
 		else

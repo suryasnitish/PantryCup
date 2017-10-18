@@ -7,11 +7,16 @@
 <title>Insert title here</title>
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
-<link rel="stylesheet" type="text/css"href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css"/>
-<link rel="stylesheet" type="text/css"href="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"/>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css"
+	href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js" />
 </head>
 
 <body>
@@ -21,20 +26,28 @@
 	<br />
 
 	<div id="headersection" align="center">
-		<div class="col-lg-6">
-			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Search for..."
-					aria-label="Search for..."> <input type="text"
-					class="form-control" placeholder="Date(Optional)" aria-label="D">
-				<span class="input-group-btn">
-					<button class="btn btn-secondary" type="button">Go!</button>
-				</span>
-			</div>
-		</div>
+		<table width="80%">
+			<tr>
+				<td width="700px" align="left"><div class="col-lg-10">
+						<div class="input-group">
+							<input type="text" class="form-control"
+								placeholder="Search for..." aria-label="Search for...">
+							<input type="text" class="form-control"
+								placeholder="Date(Optional)" aria-label="D"> <span
+								class="input-group-btn">
+								<button class="btn btn-secondary" type="button">Go!</button>
+							</span>
+						</div>
+					</div></td>
+				<td align="right"><span> 
+				<a href="/PantryCup/spring/doLogout" class="btn btn-primary">Logout</a>
+				</span></td>
+			</tr>
+		</table>
 	</div>
 
 	<div id="mainbody"
-		style='width: 1500px; position: absolute; top: 200px; bottom: 0; left: 0; right: 0; margin: auto;'>
+		style='width: 80%; position: absolute; top: 200px; bottom: 0; left: 0; right: 0; margin: auto;'>
 		<table id="example" class="table table-striped table-bordered"
 			cellspacing="0">
 			<thead>
@@ -85,7 +98,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var table = $('#example').DataTable({
-				"ajax" : 'spring/search/serviceprovider',
+				"ajax" : '/PantryCup/spring/search/serviceprovider',
 				"columns" : [ {
 					"data" : "no"
 				}, {

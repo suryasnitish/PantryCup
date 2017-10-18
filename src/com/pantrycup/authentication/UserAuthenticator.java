@@ -26,6 +26,11 @@ public class UserAuthenticator
 		return authenticatedSessionsList.contains(session);
 	}
 
+	public static void removeFromAuthenticatedSession(HttpSession session) 
+	{
+		authenticatedSessionsList.remove(session);
+	}
+
 
 
 }

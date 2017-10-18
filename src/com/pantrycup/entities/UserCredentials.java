@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "UserCredentials")
 public class UserCredentials 
@@ -22,10 +24,12 @@ public class UserCredentials
 	
 	@OneToOne
 	@JoinColumn(name="no")
+	@JsonIgnore
 	private CustomerUser customerUser;
 	
 	@OneToOne
 	@JoinColumn(name="no")
+	@JsonIgnore
 	private ServiceProviderUser serviceProviderUser;
 	
 

@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.pantrycup.entities.CustomerUser;
 import com.pantrycup.entities.ServiceProviderUser;
 
 public class ServiceProviderDBTable
@@ -37,6 +38,29 @@ public class ServiceProviderDBTable
 		transaction.commit();
 		session.close();
 	}
+
+	public ServiceProviderUser findByUserName(String username) 
+		{
+			Session session=sessionFactory.openSession();
+			Transaction transaction=session.beginTransaction();
+			String hql = "select c from ServiceProviderUser c INNER JOIN c.userCredentials u WHERE u.no=c.no and u.username = '"+username+"'";
+			System.out.println(hql);
+			Query<ServiceProviderUser> query = session.createQuery(hql);
+			List<ServiceProviderUser> results = query.list();
+			if(results.size()==0)
+			{
+				session.close();
+				return null;
+			}
+			else
+			{
+				session.close();
+				return results.get(0);
+			}
+		}
+
+	
+	
 	
 }
 
