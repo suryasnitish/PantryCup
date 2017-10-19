@@ -1,11 +1,16 @@
 package com.pantrycup.controllers;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pantrycup.dataproviders.BookingsDBTable;
 import com.pantrycup.entities.Bookings;
@@ -21,10 +26,18 @@ public class BookingController
     }
     
     @RequestMapping(value="/doBook", method = RequestMethod.POST)
-    public String doLogout(ModelMap model) 
+    public String doLogout(HttpServletRequest request,@RequestParam Map<String,String> allRequestParams, ModelMap model) 
     {  
-    	LocalDateTime fromDateTime = null;
-    	LocalDateTime toDateTime = null;
+    	String fromDateTimeRange = allRequestParams.get("fromdatetimerange");
+    	
+    	String[] parts = fromDateTimeRange.split("-", 2);
+    	String fromDate = parts[0].trim();
+    	String toDate = parts[1].trim();
+    	
+    	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a");
+    	LocalDateTime fromDateTime = LocalDateTime.parse(fromDate, formatter);
+    	LocalDateTime toDateTime = LocalDateTime.parse(toDate, formatter);
+    	
     	int totalCost = 0;
     	
     	//Creating a booking object
@@ -39,7 +52,8 @@ public class BookingController
     	//Check if he can be booked
     	
     	//Save to DB
-    	BookingsDBTable.saveBooking(booking);
+    	BookingsDBTable bookingTable = new BookingsDBTable();
+    	bookingTable.saveBooking(booking);
     	
 		return "serviceprovidersearch";
     }
