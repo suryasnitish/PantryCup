@@ -13,5 +13,6 @@
 		<mapping class="com.pantrycup.entities.UserCredentials" />
 		<mapping class="com.pantrycup.entities.ServiceProviderUser" />
 		<mapping class="com.pantrycup.entities.CustomerUser" />
+		<mapping class="com.pantrycup.entities.Bookings" />		
 	</session-factory>
 </hibernate-configuration>

@@ -7,6 +7,32 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div id="mainbody"
+		style='width: 80%; position: absolute; top: 200px; bottom: 0; left: 0; right: 0; margin: auto;'>
+		<table id="example" class="table table-striped table-bordered"
+			cellspacing="0">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Customer Name</th>
+					<th>From</th>
+					<th>To</th>
+					<th>Total Cost</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<th>#</th>
+					<th>Customer Name</th>
+					<th>From</th>
+					<th>To</th>
+					<th>Total Cost</th>
+					<th>Actions</th>
+				</tr>
+			</tfoot>
+		</table>
 
+	</div>
 </body>
 </html>

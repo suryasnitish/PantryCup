@@ -124,8 +124,7 @@
 			$('#example tbody').on('click', 'button', function() {
 				var data = table.row($(this).parents('tr')).data();
 				alert(data.fullname + "'s salary is: " + data[5]);
-				//redirectto("bookservice.jsp?providerNo=data.no");
-				window.location = "bookservice.jsp?providerNo=" + data.no;
+				window.location = "/PantryCup/spring/startBooking?providerno=" + data.no;
 			});
 
 		});

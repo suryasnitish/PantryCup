@@ -22,7 +22,7 @@
 
 </head>
 <body>
-	<form action="doBook" method="post">
+	<form action="/PantryCup/spring/doBook" method="post">
 		<table align="center">
 			<tr align="center">
 				<td colspan="2">

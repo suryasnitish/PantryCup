@@ -30,12 +30,12 @@
 			<tr>
 				<td><label for="usernametext">Username</label></td>
 				<td><input type="text" name="username" class="form-control" id="usernametext"
-					placeholder="Enter username" /></td>
+					placeholder="Enter username" required/></td>
 			</tr>
 			<tr>
 				<td><label for="passwordtext">Password</label></td>
 				<td><input type="password" name="password" class="form-control" id="passwordtext"
-					placeholder="Enter password" /></td>
+					placeholder="Enter password" required/></td>
 			</tr>
 			<tr align="center">
 				<td colspan="2" style="padding-top: 10px;"><button type="submit" class="btn btn-primary">Login</button></td>

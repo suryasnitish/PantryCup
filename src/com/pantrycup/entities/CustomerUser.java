@@ -1,14 +1,19 @@
 package com.pantrycup.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="CustomerUser")
@@ -22,6 +27,10 @@ public class CustomerUser
 	@OneToOne(targetEntity=UserCredentials.class,mappedBy="customerUser")
 	@Cascade(value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
 	private UserCredentials userCredentials;
+	
+    @OneToMany(mappedBy="customerUser")
+    @JsonIgnore
+    List<Bookings> bookings;
 	
 	private String email;
 	
@@ -74,6 +83,12 @@ public class CustomerUser
 	}
 	public void setUserCredentials(UserCredentials userCredentials) {
 		this.userCredentials = userCredentials;
+	}
+	public List<Bookings> getBookings() {
+		return bookings;
+	}
+	public void setBookings(List<Bookings> bookings) {
+		this.bookings = bookings;
 	}
 	
 	

@@ -18,14 +18,15 @@ public class Bookings
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long no;
 	@ManyToOne
-	@JoinColumn(name = "no")
+	@JoinColumn
 	private ServiceProviderUser serviceProvider;
 	@ManyToOne
-	@JoinColumn(name = "userNo")
+	@JoinColumn
 	private CustomerUser customerUser;
 	private LocalDateTime fromDateTime;
 	private LocalDateTime toDateTime;
 	private LocalDateTime bookingDate;
+	private int totalCost;
 	private boolean isFullDayBooking;
 	  
 	
@@ -58,6 +59,24 @@ public class Bookings
 	}
 	public void setFullDayBooking(boolean isFullDayBooking) {
 		this.isFullDayBooking = isFullDayBooking;
+	}
+	public int getTotalCost() {
+		return totalCost;
+	}
+	public void setTotalCost(int totalCost) {
+		this.totalCost = totalCost;
+	}
+	public ServiceProviderUser getServiceProvider() {
+		return serviceProvider;
+	}
+	public void setServiceProvider(ServiceProviderUser serviceProvider) {
+		this.serviceProvider = serviceProvider;
+	}
+	public CustomerUser getCustomerUser() {
+		return customerUser;
+	}
+	public void setCustomerUser(CustomerUser customerUser) {
+		this.customerUser = customerUser;
 	}
 	
 	
