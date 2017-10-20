@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pantrycup.dataproviders.BookingsDBTable;
 import com.pantrycup.entities.Bookings;
+import com.pantrycup.spring.beans.session.UserSession;
 
 @Controller
 @RequestMapping(value="/")
 public class BookingController 
 {
+	@Autowired
+	UserSession currentSession;
+	
     @RequestMapping(value="/startBooking", method = RequestMethod.GET)
     public String tryLogin(ModelMap model) 
     {        
@@ -43,7 +48,7 @@ public class BookingController
     	//Creating a booking object
     	Bookings booking = new Bookings();
     	booking.setBookingDate(LocalDateTime.now());
-    	booking.setCustomerUser(null);
+    	booking.setCustomerUser(currentSession.getCurrentUser());
     	booking.setFromDateTime(fromDateTime);
     	booking.setToDateTime(toDateTime);
     	booking.setFullDayBooking(false);

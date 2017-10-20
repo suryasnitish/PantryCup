@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,11 +16,15 @@ import com.pantrycup.dataproviders.CustomerUserDBTable;
 import com.pantrycup.dataproviders.ServiceProviderDBTable;
 import com.pantrycup.entities.CustomerUser;
 import com.pantrycup.entities.ServiceProviderUser;
+import com.pantrycup.spring.beans.session.UserSession;
 
 @Controller
 @RequestMapping(value="/")
 public class LoginController 
 {
+	@Autowired
+	UserSession currentSession;
+	
     @RequestMapping(value="/doLogin", method = RequestMethod.POST)
     public String tryLogin(HttpServletRequest request,@RequestParam Map<String,String> allRequestParams, ModelMap model) 
     {        
@@ -35,6 +40,7 @@ public class LoginController
 		if(customerUser!= null && password.equals(customerUser.getUserCredentials().getPassword()))
 		{
 			UserAuthenticator.addToAuthenticatedSession(request.getSession());
+			currentSession.setCurrentUser(customerUser);
 			return "serviceprovidersearch";
 		}
 		else if(serviceProviderUser!= null && password.equals(serviceProviderUser.getUserCredentials().getPassword()))
