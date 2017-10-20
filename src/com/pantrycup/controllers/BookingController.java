@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pantrycup.dataproviders.BookingsDBTable;
+import com.pantrycup.dataproviders.ServiceProviderDBTable;
 import com.pantrycup.entities.Bookings;
+import com.pantrycup.entities.ServiceProviderUser;
 import com.pantrycup.spring.beans.session.UserSession;
 
 @Controller
@@ -34,6 +36,7 @@ public class BookingController
     public String doLogout(HttpServletRequest request,@RequestParam Map<String,String> allRequestParams, ModelMap model) 
     {  
     	String fromDateTimeRange = allRequestParams.get("fromdatetimerange");
+    	String providerNo = allRequestParams.get("providerno");
     	
     	String[] parts = fromDateTimeRange.split("-", 2);
     	String fromDate = parts[0].trim();
@@ -43,12 +46,17 @@ public class BookingController
     	LocalDateTime fromDateTime = LocalDateTime.parse(fromDate, formatter);
     	LocalDateTime toDateTime = LocalDateTime.parse(toDate, formatter);
     	
+    	ServiceProviderDBTable serviceProviderDBTable = new ServiceProviderDBTable();
+    	ServiceProviderUser serviceProviderUser = serviceProviderDBTable.getServiceProviderByNo(Long.parseLong(providerNo));
+    
+    	
     	int totalCost = 0;
     	
     	//Creating a booking object
     	Bookings booking = new Bookings();
     	booking.setBookingDate(LocalDateTime.now());
     	booking.setCustomerUser(currentSession.getCurrentUser());
+    	booking.setServiceProvider(serviceProviderUser);
     	booking.setFromDateTime(fromDateTime);
     	booking.setToDateTime(toDateTime);
     	booking.setFullDayBooking(false);

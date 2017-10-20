@@ -59,6 +59,15 @@ public class ServiceProviderDBTable
 			}
 		}
 
+	public ServiceProviderUser getServiceProviderByNo(long no)
+	{
+		Session session=sessionFactory.openSession();
+		Transaction transaction=session.beginTransaction();
+		ServiceProviderUser serviceProviderUser =  (ServiceProviderUser) session.get(ServiceProviderUser.class, no);
+		session.close();
+		return serviceProviderUser; 
+	}
+
 	
 	
 	

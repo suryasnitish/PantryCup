@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -23,6 +24,7 @@
 </head>
 <body>
 	<form action="/PantryCup/spring/doBook" method="post">
+	<input type="hidden" name="providerno" id="providerno"/>
 		<table align="center">
 			<tr align="center">
 				<td colspan="2">
@@ -91,6 +93,19 @@
 	<script type="text/javascript"
 		src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 	<script type="text/javascript">
+
+		function getParameterByName(name) 
+		{
+		    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+		    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+		    results = regex.exec(location.search);
+		    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+		var msg = getParameterByName("providerno");
+		if (msg) 
+		{
+	    	document.getElementById("providerno").value = decodeURIComponent(msg);
+		}
 		$(function() {
 			$('input[name="fromdatetimerange"]').daterangepicker({
 				timePicker : true,

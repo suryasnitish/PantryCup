@@ -40,39 +40,39 @@
 			<tr>
 				<td><label for="fullnametext">Name</label></td>
 				<td><input type="text" name="fullname" class="form-control"
-					id="fullnametext" placeholder="Enter fullname" /></td>
+					id="fullnametext" placeholder="Enter fullname" required/></td>
 			</tr>
 			<tr>
 				<td><label for="usernametext">Username</label></td>
 				<td><input type="text" name="username" class="form-control"
-					id="usernametext" placeholder="Enter username" /></td>
+					id="usernametext" placeholder="Enter username" required/></td>
 			</tr>
 			<tr>
 				<td><label for="passwordtext">Password</label></td>
 				<td><input type="password" name="password" class="form-control"
-					id="passwordtext" placeholder="Enter password" /></td>
+					id="passwordtext" placeholder="Enter password" required/></td>
 			</tr>
 			<tr>
 				<td><label for="emailtext">Email</label></td>
 				<td><input type="email" name="email" class="form-control"
-					id="emailtext" placeholder="Enter email" /></td>
+					id="emailtext" placeholder="Enter email" required/></td>
 			</tr>
 			<tr>
 				<td><label for="locationtext">Location</label></td>
 				<td><input type="text" name="location" class="form-control"
-					id="locationtext" placeholder="Enter location" /></td>
+					id="locationtext" placeholder="Enter location" required/></td>
 			</tr>
 			<tr>
 				<td><label for="contacttext">ContactNo</label></td>
 				<td><input type="text" name="contactNo" class="form-control"
-					id="contacttext" placeholder="Enter contact No." /></td>
+					id="contacttext" placeholder="Enter contact No." required/></td>
 			</tr>
 
 			<tr>
 				<td><label name="specializationlabel" for="specializationtext">Specialization</label></td>
 				<td><input type="text" name="specialization"
 					class="form-control" id="specializationtext"
-					placeholder="Enter specialization" /></td>
+					placeholder="Enter specialization"/></td>
 			</tr>
 			<tr>
 				<td><label name="costbasislabel" for="costbasisselect">Charge Basis</label></td>
@@ -86,7 +86,7 @@
 				<td><label name="costlabel" for="costtext">Cost</label></td>
 				<td><input type="text" name="cost" class="form-control"
 					id="costtext"
-					placeholder="Enter charges based on your charge basis" /></td>
+					placeholder="Enter charges based on your charge basis"/></td>
 			</tr>
 			<tr align="center">
 				<td colspan="2" style="padding-top: 10px;"><button
