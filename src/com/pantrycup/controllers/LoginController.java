@@ -46,6 +46,7 @@ public class LoginController
 		else if(serviceProviderUser!= null && password.equals(serviceProviderUser.getUserCredentials().getPassword()))
 		{
 			UserAuthenticator.addToAuthenticatedSession(request.getSession());
+			currentSession.setCurrentServiceProvider(serviceProviderUser);
 			return "serviceproviderhome";
 		}
 		else

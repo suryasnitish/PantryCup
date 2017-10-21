@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>PantryCup Home</title>
 
 <meta charset="utf-8">
 <meta name="viewport"
@@ -39,9 +39,17 @@
 							</span>
 						</div>
 					</div></td>
-				<td align="right"><span> 
+				<td>
+					<h2 style="color:blue; font-weight=bold">Welcome Customer</h2>
+				</td>
+				<td align="right">
+				<span> 
+				<a href="/PantryCup/mybookings.jsp">My Bookings</a>
+				</span>
+				<span> 
 				<a href="/PantryCup/spring/doLogout" class="btn btn-primary">Logout</a>
-				</span></td>
+				</span>
+				</td>
 			</tr>
 		</table>
 	</div>
@@ -123,7 +131,6 @@
 			});
 			$('#example tbody').on('click', 'button', function() {
 				var data = table.row($(this).parents('tr')).data();
-				alert(data.fullname + "'s salary is: " + data[5]);
 				window.location = "/PantryCup/spring/startBooking?providerno=" + data.no;
 			});
 

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Register</title>
 
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -89,8 +89,10 @@
 					placeholder="Enter charges based on your charge basis"/></td>
 			</tr>
 			<tr align="center">
-				<td colspan="2" style="padding-top: 10px;"><button
-						type="submit" class="btn btn-primary">OK</button></td>
+				<td colspan="2" style="padding-top: 10px;">
+					<button type="submit" class="btn btn-primary">OK</button>
+					<button type="button" onclick="location.href = '/PantryCup/login.jsp';" class="btn btn-primary">Cancel</button>
+				</td>
 			</tr>
 		</table>
 	</form>

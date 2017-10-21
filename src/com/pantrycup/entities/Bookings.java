@@ -26,9 +26,9 @@ public class Bookings
 	private LocalDateTime fromDateTime;
 	private LocalDateTime toDateTime;
 	private LocalDateTime bookingDate;
-	private int totalCost;
+	private double totalCost;
 	private boolean isFullDayBooking;
-	  
+	private String status;
 	
 	public long getNo() {
 		return no;
@@ -60,10 +60,10 @@ public class Bookings
 	public void setFullDayBooking(boolean isFullDayBooking) {
 		this.isFullDayBooking = isFullDayBooking;
 	}
-	public int getTotalCost() {
+	public double getTotalCost() {
 		return totalCost;
 	}
-	public void setTotalCost(int totalCost) {
+	public void setTotalCost(double totalCost) {
 		this.totalCost = totalCost;
 	}
 	public ServiceProviderUser getServiceProvider() {
@@ -77,6 +77,14 @@ public class Bookings
 	}
 	public void setCustomerUser(CustomerUser customerUser) {
 		this.customerUser = customerUser;
+	}
+	public String getStatus()
+	{
+		return status;
+	}
+	public void setStatus(String status)
+	{
+		this.status = status;
 	}
 	
 	

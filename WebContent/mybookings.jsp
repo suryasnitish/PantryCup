@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PantryCup Service Home</title>
+<title>My Bookings</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,13 +37,14 @@
 								<button class="btn btn-secondary" type="button">Go!</button>
 							</span>
 						</div>
-					</div>
-				</td>
-				<td>
-					<h2 style="color: blue;">Welcome ServiceProvider</h2>
-				</td>
-				<td align="right"><span> <a
-						href="/PantryCup/spring/doLogout" class="btn btn-primary">Logout</a>
+					</div></td>
+					<td>
+					<h2 style="color:blue; font-weight=bold">My Bookings</h2>
+				    </td>
+				<td align="right">
+				<a href="/PantryCup/serviceprovidersearch.jsp">Back to Home</a>
+				<span> 
+				<a href="/PantryCup/spring/doLogout" class="btn btn-primary">Logout</a>
 				</span></td>
 			</tr>
 		</table>
@@ -56,7 +57,8 @@
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Customer Name</th>
+					<th>Service Provider Name</th>
+					<th>Specialization</th>
 					<th>From</th>
 					<th>To</th>
 					<th>Total Cost</th>
@@ -67,11 +69,12 @@
 			<tfoot>
 				<tr>
 					<th>#</th>
-					<th>Customer Name</th>
+					<th>Service Provider Name</th>
+					<th>Specialization</th>
 					<th>From</th>
 					<th>To</th>
 					<th>Total Cost</th>
-					<th>Status</th>					
+					<th>Status</th>
 					<th>Actions</th>
 				</tr>
 			</tfoot>
@@ -102,19 +105,21 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var table = $('#example').DataTable({
-				"ajax" : '/PantryCup/spring/search/bookings',
+				"ajax" : '/PantryCup/spring/customer/bookings',
 				"columns" : [ {
 					"data" : "no"
 				}, {
-					"data" : "customerUser.fullname"
+					"data" : "serviceProvider.fullname"
+				}, {
+					"data" : "serviceProvider.specialization"
 				}, {
 					"data" : function (data, type, dataToSet) {
 				        return data.fromDateTime.dayOfMonth + "-" + data.fromDateTime.monthValue + "-" + data.fromDateTime.year + " " + data.fromDateTime.hour + ":" + data.fromDateTime.minute;
-				    }
-				}, {
+			    	}
+				},{
 					"data" : function (data, type, dataToSet) {
-				        return data.toDateTime.dayOfMonth + "-" + data.toDateTime.monthValue + "-" + data.toDateTime.year + " " + data.toDateTime.hour + ":" + data.toDateTime.minute;
-				    }
+			        return data.toDateTime.dayOfMonth + "-" + data.toDateTime.monthValue + "-" + data.toDateTime.year + " " + data.toDateTime.hour + ":" + data.toDateTime.minute;
+			   		}
 				}, {
 					"data" : "totalCost"
 				}, {
@@ -123,25 +128,24 @@
 					"data" : function (data, type, dataToSet) {
 						if(data.status=='Booked')
 						{
-				        	return "<button>Reject</button>";
+				        	return "<button>Cancel</button>";
 						}
-						return ""; 
-				    }
+						return "";
+					}
 				} ],
-				"columnDefs" : [ {
+				"columnDefs" : [{
 					"targets" : [ 0 ],
 					"visible" : false
 				} ]
 			});
-			$('#example tbody').on('click', 'button', function() 
-			{
-				var data = table.row($(this).parents('tr')).data();	
+			$('#example tbody').on('click', 'button', function() {
+				var data = table.row($(this).parents('tr')).data();				
 				$.ajax({
 					  type: "POST",
-					  url: "/PantryCup/spring/rejectbooking",
+					  url: "/PantryCup/spring/cancelbooking",
 					  data: data,
 					});
-				window.location = "/PantryCup/serviceproviderhome.jsp";
+				window.location = "/PantryCup/mybookings.jsp";
 			});
 
 		});

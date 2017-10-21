@@ -45,6 +45,10 @@ public class AuthenticationFilter implements Filter
 		{
 			;
 		}
+		else if(uri.endsWith(".css")||uri.endsWith(".js")||uri.endsWith(".jpg"))
+		{
+			;
+		}
 		else
 		{
 			if(!UserAuthenticator.isAuthenticated(httpRequest.getSession()))
