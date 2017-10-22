@@ -91,7 +91,7 @@
 			<tr align="center">
 				<td colspan="2" style="padding-top: 10px;">
 					<button type="submit" class="btn btn-primary">OK</button>
-					<button type="button" onclick="location.href = '/PantryCup/login.jsp';" class="btn btn-primary">Cancel</button>
+					<button type="button" onclick="window.location.href = '/PantryCup/login.jsp';" class="btn btn-secondary">Cancel</button>
 				</td>
 			</tr>
 		</table>
