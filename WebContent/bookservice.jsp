@@ -24,23 +24,29 @@
 </head>
 <body>
 	<form action="/PantryCup/spring/doBook" method="post">
-	<input type="hidden" name="providerno" id="providerno"/>
+	<input type="hidden" name="providerno" id="providerno"/ value="${providerNo}">
 		<table align="center">
 			<tr align="center">
 				<td colspan="2">
 					<h1 style="color: blue;">Service Booking</h1>
+					${errors}
 				</td>
 			</tr>
 			<tr align="center">
 				<td colspan="2"><label for="fromdatetime">Select Duration</label></td>
 			</tr>
 			<tr align="center">
-				<td colspan="2"><input type="text" name="fromdatetimerange" /></td>
+				<td colspan="2">
+					<div class="input-group">
+						<input type="text" name="fromdatetimerange" class="form-control" size = 40 value="${fromDateTimeRange}"/>
+						<button type="submit" class="btn btn-primary" name="action" value="check_availability">Check Availability</button>
+					</div>
+				</td>
 			</tr>
 
 			<tr align="center">
 				<td colspan="2" style="padding-top: 10px;">
-					<button type="submit" class="btn btn-primary">OK</button>
+					<button type="submit" class="btn btn-primary" name="action">OK</button>
 					<button type="button" onclick="window.location.href = '/PantryCup/serviceprovidersearch.jsp';" class="btn btn-secondary">Cancel</button>
 				</td>
 			</tr>
@@ -115,14 +121,18 @@
 				locale : {
 					format : 'MM/DD/YYYY h:mm A'
 				},
-				"autoApply": true,
 				"linkedCalendars": true,
 				"showDropdowns": true,
 				"showCustomRangeLabel" : true,
 				"opens" : "center",
-				"alwaysShowCalendars": true
+				"alwaysShowCalendars": true,
+				"autoUpdateInput": false,
+				"autoApply": true,
 			});
 		});
+		  $('input[name="fromdatetimerange"]').on('apply.daterangepicker', function(ev, picker) {
+		      $(this).val(picker.startDate.format('MM/DD/YYYY h:mm A') + ' - ' + picker.endDate.format('MM/DD/YYYY h:mm A'));
+		  });
 
 	</script>
 

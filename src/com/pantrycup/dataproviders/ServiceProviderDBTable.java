@@ -1,5 +1,6 @@
 package com.pantrycup.dataproviders;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -8,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.pantrycup.entities.Bookings;
 import com.pantrycup.entities.CustomerUser;
 import com.pantrycup.entities.ServiceProviderUser;
 
@@ -66,6 +68,25 @@ public class ServiceProviderDBTable
 		ServiceProviderUser serviceProviderUser =  (ServiceProviderUser) session.get(ServiceProviderUser.class, no);
 		session.close();
 		return serviceProviderUser; 
+	}
+
+	public boolean checkServiceProviderBookingAvailability(long no, LocalDateTime fromDateTime, LocalDateTime toDateTime)
+	{
+		boolean availability = true;
+		Session session=sessionFactory.openSession();
+		Transaction transaction=session.beginTransaction();
+		ServiceProviderUser serviceProviderUser =  (ServiceProviderUser) session.get(ServiceProviderUser.class, no);
+		List<Bookings> bookingsList = serviceProviderUser.getBookings();
+		for(Bookings booking: bookingsList)
+		{
+			if(availability && (fromDateTime.isAfter(booking.getFromDateTime()) || fromDateTime.isEqual(booking.getFromDateTime())))
+			{
+				if(toDateTime.isBefore(booking.getToDateTime()) || toDateTime.isEqual(booking.getToDateTime()))
+				availability = false;
+			}
+		}
+		session.close();
+		return availability;
 	}
 
 	

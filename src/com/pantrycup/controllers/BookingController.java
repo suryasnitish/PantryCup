@@ -6,8 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,17 +33,25 @@ public class BookingController
 	UserSession currentSession;
 
 	@RequestMapping(value = "/startBooking", method = RequestMethod.GET)
-	public String tryLogin(ModelMap model)
+	public String startBookingDoGet(ModelMap model)
+	{
+		return "bookservice";
+	}
+	@RequestMapping(value = "/startBooking", method = RequestMethod.POST)
+	public String startBookingDoPost(ModelMap model)
 	{
 		return "bookservice";
 	}
 
 	@RequestMapping(value = "/doBook", method = RequestMethod.POST)
-	public String doLogout(HttpServletRequest request, @RequestParam Map<String, String> allRequestParams,
+	public String doBook(HttpServletRequest request,HttpServletResponse response, @RequestParam Map<String, String> allRequestParams,
 			ModelMap model)
 	{
 		String fromDateTimeRange = allRequestParams.get("fromdatetimerange");
-		String providerNo = allRequestParams.get("providerno");
+		String action = allRequestParams.get("action");
+		String providerNoString = allRequestParams.get("providerno");
+		
+		Long providerNo = Long.parseLong(providerNoString);
 
 		String[] parts = fromDateTimeRange.split("-", 2);
 		String fromDate = parts[0].trim();
@@ -50,11 +60,26 @@ public class BookingController
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a");
 		LocalDateTime fromDateTime = LocalDateTime.parse(fromDate, formatter);
 		LocalDateTime toDateTime = LocalDateTime.parse(toDate, formatter);
-
+		
 		ServiceProviderDBTable serviceProviderDBTable = new ServiceProviderDBTable();
-		ServiceProviderUser serviceProviderUser = serviceProviderDBTable
-				.getServiceProviderByNo(Long.parseLong(providerNo));
+		ServiceProviderUser serviceProviderUser = serviceProviderDBTable.getServiceProviderByNo(providerNo);
+		
+		// Check if he can be booked
+		if(!serviceProviderDBTable.checkServiceProviderBookingAvailability(providerNo, fromDateTime,toDateTime))
+		{
+			model.addAttribute("providerNo", providerNoString);
+			model.addAttribute("errors", "The service agent is busy for the selected time. Please try another timing.");			
+			return "forward:startBooking";
+		}
+		else if(action.equals("check_availability"))
+		{
+			model.addAttribute("providerNo", providerNoString);
+			model.addAttribute("fromDateTimeRange", fromDateTimeRange);
+			model.addAttribute("errors", "Available");
+			return "forward:startBooking";
+		}
 
+		//Calculate his charges
 		double totalCost = calculateCost(serviceProviderUser, fromDateTime, toDateTime);		
 
 		// Creating a booking object
@@ -68,35 +93,11 @@ public class BookingController
 		booking.setTotalCost(totalCost);
 		booking.setStatus(BookingStatusConstant.BOOKED);
 
-		// Check if he can be booked
-
 		// Save to DB
 		BookingsDBTable bookingTable = new BookingsDBTable();
 		bookingTable.saveBooking(booking);
 
 		return "serviceprovidersearch";
-	}
-
-	private double calculateCost(ServiceProviderUser serviceProviderUser, LocalDateTime fromDateTime,
-			LocalDateTime toDateTime)
-	{
-		double cost = serviceProviderUser.getCost();
-		long period = 0;
-		
-		switch (serviceProviderUser.getCostBasis())
-		{
-		case "Per Day basis":
-			period = ChronoUnit.DAYS.between(fromDateTime, toDateTime);
-			break;
-		case "Per Hour basis":
-			period = ChronoUnit.HOURS.between(fromDateTime, toDateTime);
-			break;
-		case "Half day basis":
-			period = ChronoUnit.HALF_DAYS.between(fromDateTime, toDateTime);
-			break;
-		}
-		return cost*period;
-
 	}
 
 	@RequestMapping(value = "/cancelbooking", method = RequestMethod.POST)
@@ -119,5 +120,27 @@ public class BookingController
 		BookingsDBTable bookingTable = new BookingsDBTable();
 		bookingTable.rejectBooking(bookingNo);
 		return null;
+	}
+	
+	private double calculateCost(ServiceProviderUser serviceProviderUser, LocalDateTime fromDateTime, LocalDateTime toDateTime)
+	{
+		double cost = serviceProviderUser.getCost();
+		long period = 0;
+		
+		switch (serviceProviderUser.getCostBasis())
+		{
+		case "Per Day basis":
+			period = ChronoUnit.DAYS.between(fromDateTime, toDateTime);
+			break;
+		case "Per Hour basis":
+			period = ChronoUnit.HOURS.between(fromDateTime, toDateTime);
+			break;
+		case "Half day basis":
+			period = ChronoUnit.HALF_DAYS.between(fromDateTime, toDateTime);
+			break;
+		}
+		period = (period==0)?1:period;
+		return cost*period;
+
 	}
 }

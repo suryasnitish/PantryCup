@@ -28,17 +28,7 @@
 	<div id="headersection" align="center">
 		<table width="80%">
 			<tr>
-				<td width="700px" align="left"><div class="col-lg-10">
-						<div class="input-group">
-							<input type="text" class="form-control"
-								placeholder="Search for..." aria-label="Search for...">
-							<input type="text" class="form-control"
-								placeholder="Date(Optional)" aria-label="D"> <span
-								class="input-group-btn">
-								<button class="btn btn-secondary" type="button">Go!</button>
-							</span>
-						</div>
-					</div></td>
+				<td width="30%"></td>
 				<td>
 					<h2 style="color:blue; font-weight=bold">Welcome Customer</h2>
 				</td>
